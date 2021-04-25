@@ -6,13 +6,13 @@ RUN apt-get update \
     && bash /tmp/node_setup.sh \
     && rm /tmp/node_setup.sh \
     && apt-get install -y nodejs git make g++ libboost-dev libboost-system-dev libboost-date-time-dev libsodium-dev \
-    && git clone https://github.com/MoneroOcean/xmr-node-proxy /xmr-node-proxy \
+    && git clone https://github.com/fangker/xmr-node-proxy /xmr-node-proxy \
     && cd /xmr-node-proxy \
     && npm install \
     && cp -n config_example.json config.json \
     && openssl req -subj "/C=IT/ST=Pool/L=Daemon/O=Mining Pool/CN=mining.proxy" -newkey rsa:2048 -nodes -keyout cert.key -x509 -out cert.pem -days 36500
 
-EXPOSE 8080 8443 3333
+EXPOSE 8080 8443 3333 8081
 
 WORKDIR /xmr-node-proxy
-CMD ./update.sh && node proxy.js
+CMD node proxy.js
