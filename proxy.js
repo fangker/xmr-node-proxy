@@ -1032,6 +1032,8 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
       diff: this.difficulty,
       connectTime: this.connectTime,
       lastContact: Math.floor(this.lastContact / 1000),
+      password: this.password,
+      user: this.user,
       lastShare: this.lastShareTime,
       coin: this.coin,
       pool: this.pool,
@@ -1353,7 +1355,9 @@ function activateHTTP() {
         let agent_parts = miner.agent.split(" ");
         tableBody += `
 				<tr>
+				<td><TAB TO=t0>${miner.user}</td>
 				 <td><TAB TO=t0>${miner.identifier}</td>
+				 <td><TAB TO=t0>${miner.password}</td>
 					<td><TAB TO=t1>${name}</td>
 					<td><TAB TO=t2>${avgSpeed}</td>
 					<td><TAB TO=t3>${miner.diff}</td>
@@ -1416,6 +1420,8 @@ function activateHTTP() {
     	${tablePool}
     	<table class="sorted-table">
     		<thead>
+    		 <th><TAB INDENT=1  ID=t1>User</th>
+    		 <th><TAB INDENT=1  ID=t1>Password</th>
     		  <th><TAB INDENT=1  ID=t1>Identifier</th>
     			<th><TAB INDENT=0  ID=t1>Name</th>
     			<th><TAB INDENT=60 ID=t2>Hashrate</th>
